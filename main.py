@@ -48,10 +48,19 @@ cursor = db.cursor()
 #cursor.execute("SELECT * FROM cliente")
 #print(cursor.fetchall())
 
-nome = "João"
-idade = 40
-cursor.execute("UPDATE cliente SET nome=%(nome)s, idade=%(idade)s WHERE idcliente=13", ({'nome': nome, 'idade': idade}))
-cursor.execute("SELECT * FROM cliente")
-print(cursor.fetchall())
+#Parametrização de consultas
+#nome = "João"
+#idade = 40
+#cursor.execute("UPDATE cliente SET nome=%(nome)s, idade=%(idade)s WHERE idcliente=13", ({'nome': nome, 'idade': idade}))
+#cursor.execute("SELECT * FROM cliente")
+#print(cursor.fetchall())
+
+cursor.executemany("INSERT INTO cliente (nome, idade) VALUES (%s, %s)",
+                   (
+                       ('José', 50),
+                       ('Maria', 50),
+                       ('Pedro', 45),
+                       ('Fabio', 20)
+                   ))
 
 db.close()
