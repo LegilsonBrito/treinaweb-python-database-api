@@ -48,4 +48,10 @@ cursor = db.cursor()
 #cursor.execute("SELECT * FROM cliente")
 #print(cursor.fetchall())
 
+nome = "João"
+idade = 40
+cursor.execute("UPDATE cliente SET nome=%(nome)s, idade=%(idade)s WHERE idcliente=13", ({'nome': nome, 'idade': idade}))
+cursor.execute("SELECT * FROM cliente")
+print(cursor.fetchall())
+
 db.close()
